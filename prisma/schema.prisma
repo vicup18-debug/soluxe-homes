@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  // NOTICE: No 'url' line here anymore! It is handled by the config file now.
+}
+
+model Property {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  price       Float
+  address     String
+  latitude    Float
+  longitude   Float
+  bedrooms    Int
+  bathrooms   Int
+  sqft        Float
+  images      String[]
+  hasVirtualTour Boolean @default(false)
+  virtualTourUrl String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
