@@ -11,14 +11,14 @@ export default function Navbar() {
         <nav className="fixed top-0 left-0 right-0 h-20 bg-white z-50 border-b border-gray-100 shadow-sm">
             <div className="container mx-auto px-6 h-full flex items-center justify-between relative">
 
-                {/* 1. LOGO (Restored to Full Name) */}
-                <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
-                    {/* If you prefer an image, uncomment the line below and remove the text span */}
-                    {/* <img src="/images/logo.png" alt="Soluxe Homes" className="h-10 w-auto" /> */}
-
-                    <span className="text-xl md:text-2xl font-serif font-bold text-soluxe-blue">
-                        Soluxe Homes<span className="text-soluxe-red">.</span>
-                    </span>
+                {/* 1. LOGO IMAGE (Replaces text) */}
+                <Link href="/" className="flex items-center" onClick={() => setIsOpen(false)}>
+                    {/* This loads your logo file. h-10 sets the height, w-auto keeps the shape correct */}
+                    <img
+                        src="/images/logo.png"
+                        alt="Soluxe Homes"
+                        className="h-10 w-auto object-contain"
+                    />
                 </Link>
 
                 {/* 2. DESKTOP MENU (Hidden on Mobile) */}
@@ -43,7 +43,7 @@ export default function Navbar() {
 
                 {/* 4. MOBILE DROPDOWN (Clean Professional List) */}
                 {isOpen && (
-                    <div className="absolute top-full left-0 w-full bg-white border-b border-gray-100 shadow-xl md:hidden flex flex-col">
+                    <div className="absolute top-full left-0 w-full bg-white border-b border-gray-100 shadow-xl md:hidden flex flex-col animate-in slide-in-from-top-2 duration-200">
                         <Link onClick={() => setIsOpen(false)} href="/" className="px-6 py-4 text-sm font-medium text-gray-700 hover:bg-gray-50 border-b border-gray-50">
                             HOME
                         </Link>
