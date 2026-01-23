@@ -1,49 +1,69 @@
+"use client";
+
 import Link from "next/link";
-import { Phone, Menu } from "lucide-react";
+import { useState } from "react";
+import { Menu, X, Phone } from "lucide-react";
 
 export default function Navbar() {
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
-        <nav className="fixed top-0 w-full z-50 transition-all duration-300">
-            {/* Dark gradient overlay */}
-            <div className="absolute inset-0 h-32 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none"></div>
+        <>
+            {/* 1. MAIN NAVBAR (Always on top) */}
+            <nav className="fixed top-0 left-0 right-0 h-20 bg-white z-50 border-b border-gray-100 shadow-sm flex items-center">
+                <div className="container mx-auto px-6 flex items-center justify-between w-full">
 
-            <div className="container mx-auto px-6 h-24 flex items-center justify-between relative z-10">
+                    {/* LOGO */}
+                    <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
+                        <span className="text-2xl font-serif font-bold text-soluxe-blue">
+                            Soluxe<span className="text-soluxe-red">.</span>
+                        </span>
+                    </Link>
 
-                {/* LOGO AREA - SLIMMED DOWN */}
-                <Link href="/" className="group relative">
-                    <div className="absolute inset-0 bg-white/30 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-
-                    {/* Reduced padding (py-2) to make it less bulky */}
-                    <div className="relative bg-white/90 backdrop-blur-xl border border-white/50 px-5 py-2 rounded-full shadow-lg hover:scale-105 transition-transform duration-300">
-                        <img
-                            src="/images/logo.png"
-                            alt="Soluxe Homes"
-                            className="h-8 md:h-10 w-auto object-contain"
-                        />
+                    {/* DESKTOP LINKS (Hidden on mobile) */}
+                    <div className="hidden md:flex items-center gap-8">
+                        <Link href="/" className="text-sm font-medium text-gray-600 hover:text-soluxe-red transition-colors">HOME</Link>
+                        <Link href="/rent" className="text-sm font-medium text-gray-600 hover:text-soluxe-red transition-colors">PROPERTIES</Link>
+                        <Link href="/about" className="text-sm font-medium text-gray-600 hover:text-soluxe-red transition-colors">ABOUT</Link>
+                        <Link href="/contact" className="text-sm font-medium text-gray-600 hover:text-soluxe-red transition-colors">CONTACT</Link>
+                        <Link href="/contact" className="bg-soluxe-blue text-white px-5 py-2.5 rounded text-xs font-bold tracking-widest hover:bg-soluxe-red transition-colors flex items-center gap-2">
+                            <Phone className="w-3 h-3" /> BOOK CALL
+                        </Link>
                     </div>
-                </Link>
 
-                {/* DESKTOP LINKS */}
-                <div className="hidden md:flex items-center space-x-10">
-                    <Link href="/" className="text-white font-bold uppercase tracking-widest text-xs hover:text-soluxe-red transition-colors drop-shadow-md">Home</Link>
-                    <Link href="/rent" className="text-white font-bold uppercase tracking-widest text-xs hover:text-soluxe-red transition-colors drop-shadow-md">Properties</Link>
-                    <Link href="/about" className="text-white font-bold uppercase tracking-widest text-xs hover:text-soluxe-red transition-colors drop-shadow-md">About</Link>
-                    <Link href="/contact" className="text-white font-bold uppercase tracking-widest text-xs hover:text-soluxe-red transition-colors drop-shadow-md">Contact</Link>
+                    {/* MOBILE TOGGLE BUTTON */}
+                    <button
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="md:hidden p-2 text-soluxe-blue focus:outline-none"
+                        aria-label="Toggle menu"
+                    >
+                        {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+                    </button>
+
                 </div>
+            </nav>
 
-                {/* CTA BUTTON */}
-                <div className="hidden md:flex">
-                    <Link href="/contact" className="flex items-center gap-2 bg-soluxe-red text-white px-6 py-2.5 font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-soluxe-red transition-all shadow-xl rounded-sm border-2 border-transparent hover:border-soluxe-red">
-                        <Phone className="h-4 w-4" />
-                        Book Call
+            {/* 2. MOBILE MENU OVERLAY (Only shows when isOpen is true) */}
+            {isOpen && (
+                <div className="fixed inset-0 top-20 bg-white z-40 md:hidden flex flex-col p-6 space-y-6 overflow-y-auto">
+                    <Link onClick={() => setIsOpen(false)} href="/" className="text-lg font-medium text-gray-800 border-b border-gray-100 pb-4">
+                        Home
+                    </Link>
+                    <Link onClick={() => setIsOpen(false)} href="/rent" className="text-lg font-medium text-gray-800 border-b border-gray-100 pb-4">
+                        Properties
+                    </Link>
+                    <Link onClick={() => setIsOpen(false)} href="/about" className="text-lg font-medium text-gray-800 border-b border-gray-100 pb-4">
+                        About Us
+                    </Link>
+                    <Link onClick={() => setIsOpen(false)} href="/contact" className="text-lg font-medium text-gray-800 border-b border-gray-100 pb-4">
+                        Contact
+                    </Link>
+
+                    <Link onClick={() => setIsOpen(false)} href="/contact" className="bg-soluxe-blue text-white py-4 rounded text-center font-bold tracking-widest shadow-lg mt-4">
+                        BOOK INSPECTION
                     </Link>
                 </div>
-
-                {/* MOBILE MENU */}
-                <button className="md:hidden text-white bg-white/10 backdrop-blur-md p-2 rounded-lg border border-white/20">
-                    <Menu className="h-6 w-6" />
-                </button>
-            </div>
-        </nav>
+            )}
+        </>
     );
 }

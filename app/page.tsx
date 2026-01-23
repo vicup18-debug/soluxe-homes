@@ -22,7 +22,7 @@ export default function Home() {
 
             {/* Badge */}
             <span className="inline-block py-2 px-5 border border-white/30 rounded-full text-white/90 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] bg-white/10 backdrop-blur-md mb-2">
-              Abuja • Lagos • Port Harcourt
+              Abuja • Lagos
             </span>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-medium text-white tracking-tight leading-[1.1]">
