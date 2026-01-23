@@ -1,17 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  /* REFINED SOLUXE IDENTITY */
+  /* === SOLUXE BRAND IDENTITY === */
+
+  /* THE BLUE: Deep Corporate Navy (Unchanged) */
   --soluxe-blue: #0A2463;
-  /* Deeper, more "Navy" Blue for elegance */
-  --soluxe-red: #D32F2F;
-  /* Bold, confident Red */
+
+  /* THE RED: Updated to "Mature Dark Red" (Deep Crimson) */
+  /* Old was #D32F2F. New is #990000 (Darker, Richer, More Professional) */
+  --soluxe-red: #990000;
+
   --soluxe-gold: #C5A059;
-  /* Optional: A luxury accent color */
+  /* Optional luxury accent */
 
   --background: #ffffff;
   --foreground: #1e293b;
-  /* Soft slate black, easier on the eyes */
 }
 
 @theme {
@@ -26,4 +29,25 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: sans-serif;
+}
+
+/* Animations for text fade-ins */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeInUp 1s ease-out forwards;
 }
