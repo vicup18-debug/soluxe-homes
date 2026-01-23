@@ -150,7 +150,7 @@ ${formData.message}
 
                         <div className="rounded-xl overflow-hidden shadow-xl relative h-48 w-full group">
                             <img
-                                src="/images/team-support.jpg"
+                                src="/images/team-support.jpeg"
                                 alt="Support Team"
                                 className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                             />
