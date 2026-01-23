@@ -8,62 +8,63 @@ export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <>
-            {/* 1. MAIN NAVBAR (Always on top) */}
-            <nav className="fixed top-0 left-0 right-0 h-20 bg-white z-50 border-b border-gray-100 shadow-sm flex items-center">
-                <div className="container mx-auto px-6 flex items-center justify-between w-full">
+        <nav className="fixed top-0 left-0 right-0 h-20 bg-white z-50 border-b border-gray-100 shadow-sm">
+            <div className="container mx-auto px-6 h-full flex items-center justify-between relative">
 
-                    {/* LOGO */}
-                    <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
-                        <span className="text-2xl font-serif font-bold text-soluxe-blue">
-                            Soluxe<span className="text-soluxe-red">.</span>
-                        </span>
+                {/* 1. LOGO (Restored to Full Name) */}
+                <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
+                    {/* If you prefer an image, uncomment the line below and remove the text span */}
+                    {/* <img src="/images/logo.png" alt="Soluxe Homes" className="h-10 w-auto" /> */}
+
+                    <span className="text-xl md:text-2xl font-serif font-bold text-soluxe-blue">
+                        Soluxe Homes<span className="text-soluxe-red">.</span>
+                    </span>
+                </Link>
+
+                {/* 2. DESKTOP MENU (Hidden on Mobile) */}
+                <div className="hidden md:flex items-center gap-8">
+                    <Link href="/" className="text-sm font-medium text-gray-600 hover:text-soluxe-red transition-colors">HOME</Link>
+                    <Link href="/rent" className="text-sm font-medium text-gray-600 hover:text-soluxe-red transition-colors">PROPERTIES</Link>
+                    <Link href="/about" className="text-sm font-medium text-gray-600 hover:text-soluxe-red transition-colors">ABOUT</Link>
+                    <Link href="/contact" className="text-sm font-medium text-gray-600 hover:text-soluxe-red transition-colors">CONTACT</Link>
+
+                    <Link href="/contact" className="bg-soluxe-blue text-white px-5 py-2.5 rounded text-xs font-bold tracking-widest hover:bg-soluxe-red transition-colors flex items-center gap-2">
+                        <Phone className="w-3 h-3" /> BOOK CALL
                     </Link>
+                </div>
 
-                    {/* DESKTOP LINKS (Hidden on mobile) */}
-                    <div className="hidden md:flex items-center gap-8">
-                        <Link href="/" className="text-sm font-medium text-gray-600 hover:text-soluxe-red transition-colors">HOME</Link>
-                        <Link href="/rent" className="text-sm font-medium text-gray-600 hover:text-soluxe-red transition-colors">PROPERTIES</Link>
-                        <Link href="/about" className="text-sm font-medium text-gray-600 hover:text-soluxe-red transition-colors">ABOUT</Link>
-                        <Link href="/contact" className="text-sm font-medium text-gray-600 hover:text-soluxe-red transition-colors">CONTACT</Link>
-                        <Link href="/contact" className="bg-soluxe-blue text-white px-5 py-2.5 rounded text-xs font-bold tracking-widest hover:bg-soluxe-red transition-colors flex items-center gap-2">
-                            <Phone className="w-3 h-3" /> BOOK CALL
+                {/* 3. MOBILE HAMBURGER BUTTON */}
+                <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="md:hidden p-2 text-soluxe-blue focus:outline-none"
+                >
+                    {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                </button>
+
+                {/* 4. MOBILE DROPDOWN (Clean Professional List) */}
+                {isOpen && (
+                    <div className="absolute top-full left-0 w-full bg-white border-b border-gray-100 shadow-xl md:hidden flex flex-col">
+                        <Link onClick={() => setIsOpen(false)} href="/" className="px-6 py-4 text-sm font-medium text-gray-700 hover:bg-gray-50 border-b border-gray-50">
+                            HOME
                         </Link>
+                        <Link onClick={() => setIsOpen(false)} href="/rent" className="px-6 py-4 text-sm font-medium text-gray-700 hover:bg-gray-50 border-b border-gray-50">
+                            PROPERTIES
+                        </Link>
+                        <Link onClick={() => setIsOpen(false)} href="/about" className="px-6 py-4 text-sm font-medium text-gray-700 hover:bg-gray-50 border-b border-gray-50">
+                            ABOUT US
+                        </Link>
+                        <Link onClick={() => setIsOpen(false)} href="/contact" className="px-6 py-4 text-sm font-medium text-gray-700 hover:bg-gray-50 border-b border-gray-50">
+                            CONTACT
+                        </Link>
+                        <div className="p-6 bg-gray-50">
+                            <Link onClick={() => setIsOpen(false)} href="/contact" className="block w-full bg-soluxe-blue text-white text-center py-3 rounded text-sm font-bold tracking-widest">
+                                BOOK INSPECTION
+                            </Link>
+                        </div>
                     </div>
+                )}
 
-                    {/* MOBILE TOGGLE BUTTON */}
-                    <button
-                        onClick={() => setIsOpen(!isOpen)}
-                        className="md:hidden p-2 text-soluxe-blue focus:outline-none"
-                        aria-label="Toggle menu"
-                    >
-                        {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
-                    </button>
-
-                </div>
-            </nav>
-
-            {/* 2. MOBILE MENU OVERLAY (Only shows when isOpen is true) */}
-            {isOpen && (
-                <div className="fixed inset-0 top-20 bg-white z-40 md:hidden flex flex-col p-6 space-y-6 overflow-y-auto">
-                    <Link onClick={() => setIsOpen(false)} href="/" className="text-lg font-medium text-gray-800 border-b border-gray-100 pb-4">
-                        Home
-                    </Link>
-                    <Link onClick={() => setIsOpen(false)} href="/rent" className="text-lg font-medium text-gray-800 border-b border-gray-100 pb-4">
-                        Properties
-                    </Link>
-                    <Link onClick={() => setIsOpen(false)} href="/about" className="text-lg font-medium text-gray-800 border-b border-gray-100 pb-4">
-                        About Us
-                    </Link>
-                    <Link onClick={() => setIsOpen(false)} href="/contact" className="text-lg font-medium text-gray-800 border-b border-gray-100 pb-4">
-                        Contact
-                    </Link>
-
-                    <Link onClick={() => setIsOpen(false)} href="/contact" className="bg-soluxe-blue text-white py-4 rounded text-center font-bold tracking-widest shadow-lg mt-4">
-                        BOOK INSPECTION
-                    </Link>
-                </div>
-            )}
-        </>
+            </div>
+        </nav>
     );
 }
