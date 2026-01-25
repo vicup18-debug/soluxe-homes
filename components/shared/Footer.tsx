@@ -46,15 +46,15 @@ export default function Footer() {
                         <ul className="space-y-4 text-sm text-gray-300">
                             <li className="flex items-start gap-3">
                                 <MapPin className="w-5 h-5 text-soluxe-gold shrink-0 mt-0.5" />
-                                <span>No. 5, Igbosere Road,<br />Lagos Island, Lagos, Nigeria</span>
+                                <span>Suite C6-7, Emmanuel Plaza<br />Utako, FCT Abuja</span>
                             </li>
                             <li className="flex items-center gap-3">
                                 <Phone className="w-5 h-5 text-soluxe-gold shrink-0" />
-                                <a href="tel:+2348012345678" className="hover:text-white transition-colors">+234 801 234 5678</a>
+                                <a href="tel:+2348012345678" className="hover:text-white transition-colors">+234 906 398 6082</a>
                             </li>
                             <li className="flex items-center gap-3">
                                 <Mail className="w-5 h-5 text-soluxe-gold shrink-0" />
-                                <a href="mailto:info@soluxehomes.com" className="hover:text-white transition-colors">info@soluxehomes.com</a>
+                                <a href="mailto:info@soluxehomes.com" className="hover:text-white transition-colors">soluxehomesrealty@gmail.com</a>
                             </li>
                         </ul>
                     </div>
